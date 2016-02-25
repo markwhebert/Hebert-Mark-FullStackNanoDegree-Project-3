@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% block head %}
+	<!-- Add custom title, meta description and CSS styling (specific to this page) to the head of generated HTML page -->
+	<title>Login User</title>
+	<meta name="description" content="Login to LandToHunt to book the perfect hunting land or start making money off your hunting property">
+	<style>.loginarea{padding-left:25%;padding-right:25%}@media (max-width:767px){.loginarea{padding:10px}}</style>
+	
+	<!-- Load Google Login scripts -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+{% endblock %}
+{% block content %}
+	<div style="background-image:linear-gradient(#ffffff,#ebebeb);padding:30px 10px 20px 10px">
+		<div class="loginarea">
+			<h1>Login to LandToHunt</h1>
+
+			<!-- Allow the user to sign in with Google -->
+			<div id="signinButton">
+				<span class="g-signin" data-scope="openid email" data-clientid="811143107879-jbpdq02647ejaonlc35rslitu56ikk7d.apps.googleusercontent.com" data-redirecturi="postmessage" data-accesstype="offline" data-cookiepolicy="single_host_origin" data-callback="signInCallback" data-approvalprompt="force"></span>
+			</div>
+			<div id="result"></div>
+
+		</div>
+	</div>
+	<script>
+		function signInCallback(authResult) {
+			// Make sure the authorization code is present
+			if (authResult['code']) {
+				// Hide the sign-in button
+				$('#signinButton').attr('style', 'display: none');
+				// Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect to the addProperties page
+				$.ajax({
+					type: 'POST',
+					url: '/gconnect?state={{STATE}}',
+					processData: false,
+					contentType: 'application/octet-stream; charset=utf-8',
+					data: authResult['code'],
+					success: function (result) {
+						if (result) {
+							$('#result').html('Login Successful!</br>' + result + '</br>Redirecting...')
+						} else if (authResult['error']) {
+							console.log('There was an error: ' + authResult['error']);
+						} else {
+							$('#result').html('Failed to connect with Google. Check your internet connection.');
+						}
+					}
+				})
+
+			}
+		}
+	</script>
+{% endblock %}
