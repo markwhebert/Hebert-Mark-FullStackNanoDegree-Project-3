@@ -2,19 +2,20 @@
 {% block head %}
 	<title>{{p.pTitle}}</title>
 	<meta name="description" content="Hunt {{p.pTitle}} in {{p.pCity}}, {{p.pState}}">
+	<style>.background{background-image:linear-gradient(#ffffff,#ebebeb);padding-top:30px;padding-bottom:20px}.col-sm-8{padding:0 30px}h1{display:inline}h2{background-color:#fc7118;border-radius:8px;color:white;font-weight:600;padding:4px 8px;display:inline;font-size:24px;margin:0;float:right}.no-margin{margin:0}</style>
 {% endblock %}
 {% block content %}
-	<div style="background-image:linear-gradient(#ffffff,#ebebeb);padding-top:30px;padding-bottom:20px">
+	<div class="background">
 		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2 padding-top" style="padding:0 30px">
-				<h1 style="display:inline">{{p.pTitle}}</h1><h2 style="background-color:#fc7118;border-radius:8px;color:white;font-weight:600;padding:4px 8px;display:inline;font-size:24px;margin:0;float:right">{% if p.pRentType == "Private" %}Private Hunting Land{% elif p.pRentType == "Public" %}Public Hunting Land{% elif p.pRentType == "Guided" %}Guided{% elif p.pRentType == "SemiGuided" %}Semi-Guided Hunting Land{% else %}Hunting Lease{% endif %}</h2>
+			<div class="col-sm-8 col-sm-offset-2 padding-top">
+				<h1>{{p.pTitle}}</h1><h2>{% if p.pRentType == "Private" %}Private Hunting Land{% elif p.pRentType == "Public" %}Public Hunting Land{% elif p.pRentType == "Guided" %}Guided{% elif p.pRentType == "SemiGuided" %}Semi-Guided Hunting Land{% else %}Hunting Lease{% endif %}</h2>
 				<h3>{{p.pCity}}, {{p.pState}}</h3>
 
 				<div class="row">
 					<p><strong>{{"{:,d}".format(p.pAcres|int)}} Acres</strong></p>
 				</div>
 				<hr />
-				<div class="row" style="margin:0">
+				<div class="row no-margin">
 					<h3>Property Description</h3>
 					<p>{{p.pDescription}}</p>
 				</div>

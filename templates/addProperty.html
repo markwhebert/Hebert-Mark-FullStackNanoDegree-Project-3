@@ -3,28 +3,29 @@
 	<!-- Add custom title and meta description to the head of generated HTML page -->
 	<title>Add New Property</title>
 	<meta name="description" content="Add your property to our database to start making money with your huntable land">
+	<style>.background{background-image:linear-gradient(#ffffff,#ebebeb);padding-top:30px;padding-bottom:20px}.col-sm-8{padding:0 30px;max-width:560px}.no-margin{margin:0}.required-input{border:1px solid #fc9902}.required-input textarea{margin-bottom:10px}.price{max-width:86px;margin:5px;padding-left:22px}.input-list{text-align:left;margin: 0 0 0 -5px}</style>
 {% endblock %}
 {% block content %}
-	<div style="background-image:linear-gradient(#ffffff,#ebebeb);padding-top:30px;padding-bottom:20px">
+	<div class="background">
 		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2 padding-top" style="padding:0 30px;max-width:560px">
+			<div class="col-sm-8 col-sm-offset-2 padding-top">
 				<h1>Make Money!<br /> By adding your huntable land</h1>
 				<!-- Implement form for necessary inputs -->
 				<form action="#" method="post" enctype="multipart/form-data">
 					<div class="form-group">
-						<div class="row" style="margin:0">
-							<input type="text" placeholder="Property Title" class="form-control" maxlength="100" name="title" required style="border:1px solid #fc9902">
-							<textarea class="form-control" rows="4" cols="50" placeholder="Description" name="description" required style="border:1px solid #fc9902;margin-bottom:10px"></textarea>
+						<div class="row no-margin">
+							<input type="text" placeholder="Property Title" class="form-control required-input" maxlength="100" name="title" required>
+							<textarea class="form-control required-input" rows="4" cols="50" placeholder="Description" name="description" required></textarea>
 							<div class="padding-bottom"></div>
-							<ul class="list-inline" style="text-align:left;margin: 0 0 0 -5px">
-								<li><input type="text" placeholder="City" class="form-control" maxlength="100" name="city" id="city" required style="border:1px solid #fc9902"></li>
-								<li><select class="form-control" name="state" id="state" required style="border:1px solid #fc9902"><option value="" disabled selected>State</option><option value="AK">AK</option><option value="AL">AL</option><option value="AR">AR</option><option value="AZ">AZ</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="IA">IA</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="MA">MA</option><option value="MD">MD</option><option value="ME">ME</option><option value="MI">MI</option><option value="MN">MN</option><option value="MO">MO</option><option value="MS">MS</option><option value="MT">MT</option><option value="NC">NC</option><option value="ND">ND</option><option value="NE">NE</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NV">NV</option><option value="NY">NY</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VA">VA</option><option value="VT">VT</option><option value="WA">WA</option><option value="WI">WI</option><option value="WV">WV</option><option value="WY">WY</option></select></li>
+							<ul class="list-inline input-list">
+								<li><input type="text" placeholder="City" class="form-control required-input" maxlength="100" name="city" id="city" required></li>
+								<li><select class="form-control required-input" name="state" id="state" required><option value="" disabled selected>State</option><option value="AK">AK</option><option value="AL">AL</option><option value="AR">AR</option><option value="AZ">AZ</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="IA">IA</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="MA">MA</option><option value="MD">MD</option><option value="ME">ME</option><option value="MI">MI</option><option value="MN">MN</option><option value="MO">MO</option><option value="MS">MS</option><option value="MT">MT</option><option value="NC">NC</option><option value="ND">ND</option><option value="NE">NE</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NV">NV</option><option value="NY">NY</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VA">VA</option><option value="VT">VT</option><option value="WA">WA</option><option value="WI">WI</option><option value="WV">WV</option><option value="WY">WY</option></select></li>
 							</ul>
-							<ul class="list-inline" style="text-align:left;margin: 0 0 0 -5px">
-								<li><input type="number" name="acres" min="1" max="999999" required style="border:1px solid #fc9902" placeholder="Acres"></li>
-								<li><div class="currencyinput"><span>$</span><input type="number" name="price" min="0" placeholder="Price" required style="border:1px solid #fc9902;max-width:86px;margin:5px;padding-left:22px"></div></li>
+							<ul class="list-inline input-list">
+								<li><input class="required-input" type="number" name="acres" min="1" max="999999" required placeholder="Acres"></li>
+								<li><div class="currencyinput"><span>$</span><input type="number" name="price" min="0" placeholder="Price" class="price required-input" required></div></li>
 							</ul>
-							<select class="form-control" name="rentType" id="rentType" required style="border:1px solid #fc9902"><option value="" disabled selected>Rent Type</option><option value="Private">Private</option><option value="Public">Public</option><option value="Guided">Guided</option><option value="SemiGuided">SemiGuided</option><option value="Lease">Lease</option></select>
+							<select class="form-control required-input" name="rentType" id="rentType" required><option value="" disabled selected>Rent Type</option><option value="Private">Private</option><option value="Public">Public</option><option value="Guided">Guided</option><option value="SemiGuided">SemiGuided</option><option value="Lease">Lease</option></select>
 						</div>
 						<button type="submit" class="btn btn-default btn-orange" id="submit">Create</button>
 					</div>

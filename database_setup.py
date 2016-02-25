@@ -36,6 +36,23 @@ class Properties(Base):
 			'rentType' : self.pRentType
     }
 
+# Create Users Table
+class Users(Base):
+	__tablename__ = 'users'
+
+	uID = Column(Integer, primary_key=True)
+	email = Column(String(100))
+	picture = Column(String(200))
+	name = Column(String(100))
+
+# Create Category Table
+class Category(Base):
+	__tablename__ = 'category'
+
+	cID = Column(Integer, primary_key=True)
+	cRentType = Column(String(10)) # Private, Public, Guided, SemiGuided, Lease
+	cDescription = Column(String(2000))
+
 
 engine = create_engine('sqlite:///database.db')
  

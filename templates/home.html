@@ -3,7 +3,7 @@
 	<!-- Add custom title, meta description and CSS styling (specific to this page) to the head of generated HTML page -->
 	<title>Hunt Without Hassle</title>
 	<meta name="description" content="Provides hunters with access to public, private and guided hunting land for daily use, and helping landowners increase revenue on their farms, ranches and hunting land">
-	<style>.jumbotron .container{position:relative;padding:55px}.jumbotron h1{font-weight:700;color:#ebebeb;font-size:52px;text-shadow:-1px -1px 1px #000,1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000}.jumbotron h4{font-weight:700;color:#ebebeb;font-size:22px;text-shadow:-1px -1px 1px #000,1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000}.jumbotron{background-size:cover;background-repeat:no-repeat;background-position:0 10%;margin-bottom:0;padding-bottom:70px}.jumbotron .btn{background-color:#fc7118;font-weight:700;padding-left:25px;padding-right:25px;border-width:0;font-size:18px}.jumbotron .btn:hover{background-color:#fc9902}@media (max-width:767px){.jumbotron h1{font-size:36px}h1{margin-top:10px}.jumbotron{padding:0}.jumbotron .container{padding:30px}.jumbotron h3{font-size:18px}}</style>
+	<style>.jumbotron .container{position:relative;padding:55px}.jumbotron h1{font-weight:700;color:#ebebeb;font-size:52px;text-shadow:-1px -1px 1px #000,1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000}.jumbotron h4{font-weight:700;color:#ebebeb;font-size:22px;text-shadow:-1px -1px 1px #000,1px -1px 1px #000,-1px 1px 1px #000,1px 1px 1px #000}.jumbotron{background-size:cover;background-repeat:no-repeat;background-position:0 10%;margin-bottom:0;padding-bottom:70px}.jumbotron .btn{background-color:#fc7118;font-weight:700;padding-left:25px;padding-right:25px;border-width:0;font-size:18px}.jumbotron .btn:hover{background-color:#fc9902}@media (max-width:767px){.jumbotron h1{font-size:36px}h1{margin-top:10px}.jumbotron{padding:0}.jumbotron .container{padding:30px}.jumbotron h3{font-size:18px}}.prop{margin:0}</style>
 {% endblock %}
 {% block content %}
 	<!-- Display the Jumbotron with an awesome image -->
@@ -37,7 +37,7 @@
 				<h2>Available Properties</h2>
 				<hr>
 				<!-- Allow the viewer to select which category they want to see -->
-				<div class="col-md-4" style="max-width:400px">
+				<div class="col-md-4">
 					<a class="btn btn-default btn-block" href="{{ url_for('showHome') }}" role="button">All</a>
 					<a class="btn btn-default btn-block" href="{{ url_for('showHome', category = 'Private') }}" role="button">Private</a>
 					<a class="btn btn-default btn-block" href="{{ url_for('showHome', category = 'Public') }}" role="button">Public</a>
@@ -47,19 +47,25 @@
 				</div>
 
 				<!-- Show all of the properties in their selected category -->
-				<div class="col-md-8" style="max-width:800px">
+				<div class="col-md-8">
+					<!-- If there is a category selected, display the category description -->
+					{% if cat is not none %}
+					<h3>{{cat.cRentType}}</h3>
+					<p>{{cat.cDescription}}</p>
+					{% endif %}
+					<hr />
 					<!-- If there are no properties in the category, then there should be a message "No available properties in that category" -->
 					{% if properties %}
 						<!-- Loop through all of the properties, and display important details -->
 						{% for prop in properties %}
 							<a href="{{ url_for('viewProperty', pID = prop.pID) }}">
-								<h3 style="margin:0">{{prop.pTitle}}</h3>
+								<h3 class="prop">{{prop.pTitle}}</h3>
 								<p>{{prop.pCity}}, {{prop.pState}}</p>
-								<h3 style="margin:0">{{prop.pAcres}} Acres at ${{prop.pPrice}}</h3>
+								<h3 class="prop">{{prop.pAcres}} Acres at ${{prop.pPrice}}</h3>
 								<p>{{prop.pRentType}}</p>
 							</a>
 							<!-- To make sure only properties the user owns have 'Edit' and 'Delete' buttons next to them -->
-							{% if g.email == prop.userEmail %}
+							{% if g.current_user.email == prop.userEmail %}
 								<a class="btn btn-default btn-orange" href="{{ url_for('editProperty', pID = prop.pID) }}">Edit</a>
 								<a class="btn btn-default btn-grey" href="{{ url_for('deleteProperty', pID = prop.pID) }}">Delete</a>
 							{% endif %}
